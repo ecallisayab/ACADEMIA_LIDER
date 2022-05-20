@@ -23,7 +23,7 @@ namespace AcademiaLider.CapaAccesoDatos
         {
             bool respuesta = false;
             String sql = "INSERT INTO eventos (codigo, nombre, cod_modalidad, carga_horaria, fecha_inicio, fecha_final, cod_ciudad, estado, cod_docente) " +
-                "VALUES (CONCAT('LE-', RIGHT('00000' + Ltrim(Rtrim(NEXT VALUE FOR seq_evento)),5)), @nombre, @cod_modalidad, @carga_horaria, @fecha_inicio, @fecha_final, @cod_ciudad, @estado,@cod_docente)";
+                "VALUES (CONCAT('LE-', RIGHT('00000' + Ltrim(Rtrim(NEXT VALUE FOR seq_evento)),5)), @nombre, @cod_modalidad, @carga_horaria, @fecha_inicio, @fecha_final, @cod_ciudad, @estado, @cod_docente)";
             int filas;
             try
             {

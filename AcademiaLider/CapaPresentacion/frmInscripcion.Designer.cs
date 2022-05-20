@@ -285,7 +285,7 @@
             this.Controls.Add(this.txtParticipante);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvListado);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmInscripcion";
             this.Text = "Inscripciones";
             this.Load += new System.EventHandler(this.frmInscripcion_Load);

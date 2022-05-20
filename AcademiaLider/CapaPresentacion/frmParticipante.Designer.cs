@@ -412,7 +412,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvListado);
             this.Controls.Add(this.cboGradoAcademico);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmParticipante";
             this.Text = "Participantes";
             this.Load += new System.EventHandler(this.frmParticipante_Load);
