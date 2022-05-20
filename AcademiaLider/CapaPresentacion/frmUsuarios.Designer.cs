@@ -183,6 +183,7 @@ namespace AcademiaLider.CapaPresentacion
             this.groupBox1.Size = new System.Drawing.Size(1140, 74);
             this.groupBox1.TabIndex = 68;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label5
             // 
@@ -308,6 +309,7 @@ namespace AcademiaLider.CapaPresentacion
             this.Name = "frmUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Load += new System.EventHandler(this.frmUsuarios_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();

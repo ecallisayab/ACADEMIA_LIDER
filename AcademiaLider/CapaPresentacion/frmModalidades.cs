@@ -17,6 +17,7 @@ namespace AcademiaLider.CapaPresentacion
     {
         private clnModalidades action;
         private Modalidades updateLocal;
+        private frmCatalogos cat = null;
         public frmModalidades()
         {
             InitializeComponent();
@@ -59,6 +60,10 @@ namespace AcademiaLider.CapaPresentacion
                 return true;
             }
 
+        }
+        public void volver(frmCatalogos cat)
+        {
+            this.cat = cat;
         }
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -151,7 +156,8 @@ namespace AcademiaLider.CapaPresentacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-
+            this.cat.Show();
+            this.Close();
         }
 
         private void dgvCargar(object sender, DataGridViewCellMouseEventArgs e)

@@ -183,5 +183,17 @@ namespace AcademiaLider.CapaPresentacion
             selectAll();
             disableDataGrid();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmUsuarios_Load(object sender, EventArgs e)
+        {
+            disableDataGrid();
+            selectAll();
+      
+        }
     }
 }

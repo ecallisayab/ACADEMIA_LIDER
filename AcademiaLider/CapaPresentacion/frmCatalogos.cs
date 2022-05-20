@@ -12,22 +12,30 @@ namespace AcademiaLider.CapaPresentacion
 {
     public partial class frmCatalogos : Form
     {
+       private frmCatalogos cat = null;
         public frmCatalogos()
         {
             InitializeComponent();
+            
         }
-
+        public void ventana(frmCatalogos cat)
+        {
+            this.cat = cat;
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             frmProfesionales f = new frmProfesionales();
             this.Hide();
+            f.volver(cat);
             f.ShowDialog();
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             frmGradosAcademi f = new frmGradosAcademi();
             this.Hide();
+            f.volver(cat);
             f.ShowDialog();
         }
 
@@ -35,6 +43,7 @@ namespace AcademiaLider.CapaPresentacion
         {
             frmCiudades f = new frmCiudades();
             this.Hide();
+            f.volver(cat);
             f.ShowDialog();
         }
 
@@ -42,6 +51,7 @@ namespace AcademiaLider.CapaPresentacion
         {
             frmModalidades f = new frmModalidades();
             this.Hide();
+            f.volver(cat);
             f.ShowDialog();
         }
     }

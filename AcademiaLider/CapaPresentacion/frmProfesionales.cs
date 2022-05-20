@@ -16,9 +16,11 @@ namespace AcademiaLider.CapaPresentacion
     {
         private clnProfesiones action;
         private Profesiones updateLocal;
+        private frmCatalogos cat = null;
         public frmProfesionales()
         {
             InitializeComponent();
+          
         }
         public void selectAll()
         {
@@ -58,6 +60,10 @@ namespace AcademiaLider.CapaPresentacion
                 return true;
             }
 
+        }
+        public void volver(frmCatalogos cat)
+        {
+            this.cat = cat;
         }
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -164,7 +170,8 @@ namespace AcademiaLider.CapaPresentacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-
+            this.cat.Show();
+            this.Close();
         }
     }
 }

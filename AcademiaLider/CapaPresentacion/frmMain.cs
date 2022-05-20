@@ -17,13 +17,15 @@ namespace AcademiaLider.CapaPresentacion
         private Form viewEvento  = null;
         private Form viewInscripcion = null;
         private Form viewCertificado = null;
+        private Form viewUsuarios = null;
 
         public frmMain()
         {
             InitializeComponent();
+            init();
         }
 
-        private void registroToolStripMenuItem_Click(object sender, EventArgs e)
+        public void init()
         {
             if (!this.MdiChildren.Contains(viewParticipante))
             {
@@ -32,6 +34,13 @@ namespace AcademiaLider.CapaPresentacion
             }
             viewParticipante.Show();
             viewParticipante.BringToFront();
+        }
+
+
+
+        private void registroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            init();
         }
 
         private void registroToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -80,6 +89,28 @@ namespace AcademiaLider.CapaPresentacion
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCatalogos fr =new frmCatalogos();
+           
+            fr.ventana(fr);
+    
+            fr.ShowDialog();
+           
+        }
+
+        private void registrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.MdiChildren.Contains(viewUsuarios))
+            {
+                viewUsuarios = new frmUsuarios();
+                viewUsuarios.MdiParent = this;
+            }
+            viewUsuarios.Show();
+            viewUsuarios.BringToFront();
 
         }
     }

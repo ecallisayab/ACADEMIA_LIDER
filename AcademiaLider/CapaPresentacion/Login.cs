@@ -24,10 +24,11 @@ namespace AcademiaLider.CapaPresentacion
             logicaLogin verificar = new logicaLogin(txtUsuario.Text, txtPassword.Text);
             if (verificar.validar())
             {
-                frmCatalogos cat = new frmCatalogos();
-                //  frmMain cat = new frmMain();
+                
+                 frmMain cat = new frmMain();
                 this.Hide();
                 cat.Show();
+
             }
             else
             {
