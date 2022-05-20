@@ -88,6 +88,7 @@
             this.Controls.Add(this.txtCriterioBusqueda);
             this.Controls.Add(this.dgvListado);
             this.Name = "frmListaEventos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListaEventos";
             this.Load += new System.EventHandler(this.frmListaEventos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).EndInit();
