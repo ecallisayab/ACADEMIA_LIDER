@@ -113,5 +113,23 @@ namespace AcademiaLider.CapaPresentacion
             viewUsuarios.BringToFront();
 
         }
+
+        private void cerrarLaAplicaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CerrarAplicacion();
+        }
+
+        private void CerrarAplicacion()
+        {
+            Application.Exit();
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                CerrarAplicacion();
+            }
+        }
     }
 }
