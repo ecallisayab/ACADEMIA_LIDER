@@ -39,7 +39,7 @@ namespace AcademiaLider.Core
             {
                 if (conexion == null)
                 {
-                    conexion = new SqlConnection(ObtenerCadenaConexion());
+                    conexion = new SqlConnection(cadenaConexion);
                     conexion.Open();
                 }
             }
