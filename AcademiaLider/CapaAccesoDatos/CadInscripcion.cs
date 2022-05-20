@@ -189,7 +189,7 @@ namespace AcademiaLider.CapaAccesoDatos
 
         public DataTable BuscarInscritos(String criterio)
         {
-            String sql = "SELECT t1.codigo, t1.cod_participante, concat(t2.nombres, ' ', t2.ap_paterno, ' ', t2.ap_materno) AS participante, t2.ci, t1.cod_evento, t3.nombre AS evento, t1.nota, t3.fecha_final, t3.carga_horaria " +
+            String sql = "SELECT t1.codigo, t1.cod_participante, concat(t2.nombres, ' ', t2.ap_paterno, ' ', t2.ap_materno) AS participante, t2.ci, t1.cod_evento, t3.nombre AS evento, t1.nota, CONVERT(DATE, t3.fecha_final) AS fecha_final, t3.carga_horaria " +
                 "FROM inscripcion t1 " +
                 "INNER JOIN participantes t2 ON t1.cod_participante=t2.codigo " +
                 "INNER JOIN eventos t3 ON t1.cod_evento=t3.codigo " +

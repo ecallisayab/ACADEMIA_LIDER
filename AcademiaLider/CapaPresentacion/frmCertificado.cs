@@ -22,11 +22,14 @@ namespace AcademiaLider.CapaPresentacion
     {
         private ClnInscripcion objLogicaNegocio = new ClnInscripcion();
         private ClnParticipante objLogicaParticipante = new ClnParticipante();
+        private ClnCertificado objLogicaCertificado = new ClnCertificado();
         private Participante objParticipante = new Participante();
+        private Certificado objCertificado = new Certificado();
 
         private Bitmap imagenPlantilla;
         private Bitmap imagenQr;
 
+        private int codigoInscripcion;
         private String codigoCertificado;
         private String nombreParticipante;
         private String ciParticipante;
@@ -58,6 +61,7 @@ namespace AcademiaLider.CapaPresentacion
 
         private void Inicializar()
         {
+            codigoInscripcion = 0;
             codigoCertificado = "";
             nombreParticipante = "";
             ciParticipante = "";
@@ -118,7 +122,8 @@ namespace AcademiaLider.CapaPresentacion
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            String texto = codigoCertificado+";"+nombreParticipante+";"+ciParticipante+";"+nombreEvento+";"+nota+";"+fecha;
+            objLogicaCertificado.CrearRegistro(objCertificado);
+            String texto = objLogicaCertificado.Id+";"+nombreParticipante+";"+ciParticipante+";"+nombreEvento+";"+nota+";"+fecha;
             CargarPlantilla();
             GenerarCodigoQr(texto);
             GenerarCertificado();
@@ -189,10 +194,10 @@ namespace AcademiaLider.CapaPresentacion
             graphicsImage.DrawString(parrafo3, new System.Drawing.Font("arial", 36,
             FontStyle.Regular), new SolidBrush(StringColor), new Point(mitad, 1640),stringformat3);
 
-            graphicsImage.DrawString("CÓDIGO: LC-00004", new System.Drawing.Font("arial", 24,
+            graphicsImage.DrawString("CÓDIGO: "+objLogicaCertificado.Id, new System.Drawing.Font("arial", 24,
             FontStyle.Regular), new SolidBrush(StringColor), new Point(imagenPlantilla.Width-500, 385),stringformat3);
 
-            if (!nota.Equals(""))
+            if (!nota.Equals("") && !nota.Equals("0"))
             {
                 graphicsImage.DrawString("NOTA APROBACIÓN: " + nota + "/100", new System.Drawing.Font("arial", 24,
                 FontStyle.Regular), new SolidBrush(StringColor), new Point(imagenPlantilla.Width - 500, 1010),stringformat3);
@@ -303,13 +308,17 @@ namespace AcademiaLider.CapaPresentacion
         {
             if (e.RowIndex >= 0 && e.RowIndex < dgvListado.Rows.Count - 1)
             {
+                objCertificado.CodInscripcion = Convert.ToInt32(dgvListado.Rows[e.RowIndex].Cells[0].Value.ToString());
+
                 String codigoParticipante = dgvListado.Rows[e.RowIndex].Cells[1].Value.ToString();
                 nombreParticipante = dgvListado.Rows[e.RowIndex].Cells[2].Value.ToString();
                 ciParticipante = dgvListado.Rows[e.RowIndex].Cells[3].Value.ToString();
                 nombreEvento = dgvListado.Rows[e.RowIndex].Cells[5].Value.ToString();
                 nota = dgvListado.Rows[e.RowIndex].Cells[6].Value.ToString();
-                fecha = dgvListado.Rows[e.RowIndex].Cells[7].Value.ToString();
+                DateTime fechaAux = Convert.ToDateTime(dgvListado.Rows[e.RowIndex].Cells[7].Value.ToString());
+                fecha = fechaAux.Day+"/"+fechaAux.Month+"/"+fechaAux.Year;
                 cargaHoraria = dgvListado.Rows[e.RowIndex].Cells[8].Value.ToString();
+
                 objParticipante = objLogicaParticipante.ObtenerRegistro(codigoParticipante);
                 MostrarDatos();
                 HabilitarBtnGenerar();
