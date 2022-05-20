@@ -131,6 +131,27 @@ namespace AcademiaLider.CapaLogicaNegocio
             }
         }
 
+        public void VerificarDuplicidadRegistro(String codParticipante, String codEvento)
+        {
+            if (!codParticipante.Equals("") && !codEvento.Equals(""))
+            {
+                this.estado = this.objAccesoDatos.VerificarDuplicidad(codParticipante, codEvento);
+                if (this.estado)
+                {
+                    this.mensaje = "El participante ya está inscrito en el evento.";
+                }
+                else
+                {
+                    this.mensaje = "El participante puede inscribirse en el evento.";
+                }
+            }
+            else
+            {
+                this.estado = false;
+                this.mensaje = "Ingrese el código del registro que desea eliminar.";
+            }
+        }
+
         private String Validar(Inscripcion objInscripcion)
         {
             String respuesta = "";

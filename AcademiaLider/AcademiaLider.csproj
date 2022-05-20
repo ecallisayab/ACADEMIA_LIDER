@@ -86,6 +86,12 @@
     <Compile Include="CapaPresentacion\frmInscripcion.Designer.cs">
       <DependentUpon>frmInscripcion.cs</DependentUpon>
     </Compile>
+    <Compile Include="CapaPresentacion\frmListaEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapaPresentacion\frmListaEventos.Designer.cs">
+      <DependentUpon>frmListaEventos.cs</DependentUpon>
+    </Compile>
     <Compile Include="CapaPresentacion\frmListaParticipantes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmInscripcion.resx">
       <DependentUpon>frmInscripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapaPresentacion\frmListaEventos.resx">
+      <DependentUpon>frmListaEventos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmListaParticipantes.resx">
       <DependentUpon>frmListaParticipantes.cs</DependentUpon>

@@ -22,8 +22,8 @@ namespace AcademiaLider.CapaAccesoDatos
         public bool Crear(Inscripcion objInscripcion)
         {
             bool respuesta = false;
-            String sql = "INSERT INTO inscripcion (cod_participante, cod_evento, cod_fecha, cod_nota) " +
-                "VALUES (CONCAT(@cod_participante, @cod_evento, @cod_fecha, @cod_nota)";
+            String sql = "INSERT INTO inscripcion (cod_participante, cod_evento, fecha, nota) " +
+                "VALUES (@cod_participante, @cod_evento, @fecha, @nota)";
             int filas;
             try
             {
@@ -104,7 +104,11 @@ namespace AcademiaLider.CapaAccesoDatos
             Inscripcion objInscripcion = new Inscripcion();
             try
             {
-                String sql = "SELECT * FROM inscripcion WHERE codigo=@codigo";
+                String sql = "SELECT t1.*, concat(t2.nombres, ' ', t2.ap_paterno, ' ', t2.ap_materno) AS participante, t3.nombre AS evento "+
+                    "FROM inscripcion t1 "+
+                    "INNER JOIN participantes t2 ON t1.cod_participante=t2.codigo "+
+                    "INNER JOIN eventos t3 ON t1.cod_evento=t3.codigo "+
+                    "WHERE t1.codigo=@codigo";
                 ConexionBaseDatos bd = new ConexionBaseDatos();
                 SqlCommand comando = new SqlCommand(sql, bd.Conectar());
                 comando.Parameters.AddWithValue("@codigo", codigo);
@@ -116,6 +120,8 @@ namespace AcademiaLider.CapaAccesoDatos
                     objInscripcion.CodEvento = datos["cod_evento"].ToString();
                     objInscripcion.Fecha = datos["fecha"].ToString();
                     objInscripcion.Nota = Convert.ToInt32(datos["nota"].ToString());
+                    objInscripcion.NombreParticipante = datos["participante"].ToString();
+                    objInscripcion.NombreEvento = datos["evento"].ToString();
                 }
                 bd.Cerrar();
             }
@@ -211,6 +217,31 @@ namespace AcademiaLider.CapaAccesoDatos
                 MessageBox.Show("Se produjo un error en la consulta: " + ex.Message);
             }
             return tabla;
+        }
+
+        public bool VerificarDuplicidad(String codParticipante, String codEvento)
+        {
+            bool respuesta = false;
+            String sql = "SELECT * FROM inscripcion WHERE cod_participante=@cod_participante AND cod_evento=@cod_evento";
+            try
+            {
+                ConexionBaseDatos bd = new ConexionBaseDatos();
+                SqlCommand comando = new SqlCommand(sql, bd.Conectar());
+                comando.Parameters.AddWithValue("@cod_participante", codParticipante);
+                comando.Parameters.AddWithValue("@cod_evento", codEvento);
+                SqlDataReader datos = comando.ExecuteReader();
+                if (datos.Read())
+                {
+                    respuesta = true;
+                }
+                datos.Close();
+                bd.Cerrar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se produjo un error en la consulta: " + ex.Message);
+            }
+            return respuesta;
         }
     }
 }

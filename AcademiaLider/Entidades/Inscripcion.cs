@@ -20,7 +20,9 @@ namespace AcademiaLider.Entidades
         {
             codigo = 0;
             cod_participante = "";
+            nombre_participante = "";
             cod_evento = "";
+            nombre_evento = "";
             fecha = "";
             nota = 0;
         }

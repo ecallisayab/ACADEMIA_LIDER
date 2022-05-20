@@ -198,7 +198,7 @@ namespace AcademiaLider.CapaPresentacion
                 FontStyle.Regular), new SolidBrush(StringColor), new Point(imagenPlantilla.Width - 500, 1010),stringformat3);
             }
 
-            Double qrRatio = (Double)350 / (Double)imagenQr.Height;
+            Double qrRatio = (Double)450 / (Double)imagenQr.Height;
             int altoQr = (int)(imagenQr.Height * qrRatio);
             int anchoQr = (int)(imagenQr.Width * qrRatio);
 

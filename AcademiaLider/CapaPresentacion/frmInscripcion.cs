@@ -18,6 +18,7 @@ namespace AcademiaLider.CapaPresentacion
         private ClnInscripcion objLogicaNegocio = new ClnInscripcion();
         private Inscripcion objInscripcion = new Inscripcion();
         private frmListaParticipantes viewParticipante = null;
+        private frmListaEventos viewEvento = null;
 
         public frmInscripcion()
         {
@@ -101,23 +102,32 @@ namespace AcademiaLider.CapaPresentacion
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            DeshabilitarBtnNuevo();
-            Inicializar();
-            CargarDatos();
-            objLogicaNegocio.CrearRegistro(objInscripcion);
-            if (objLogicaNegocio.Estado)
+            objLogicaNegocio.VerificarDuplicidadRegistro(objInscripcion.CodParticipante, objInscripcion.CodEvento);
+            if (objLogicaNegocio.Estado == false)
             {
-                Limpiar();
-                Inicializar();
-                Listar();
-                //MessageBox.Show(objLogicaNegocio.Mensaje);
-                lblMensaje.Text = objLogicaNegocio.Mensaje;
+                DeshabilitarBtnNuevo();
+                //Inicializar();
+                CargarDatos();
+                objLogicaNegocio.CrearRegistro(objInscripcion);
+                if (objLogicaNegocio.Estado)
+                {
+                    Limpiar();
+                    Inicializar();
+                    Listar();
+                    //MessageBox.Show(objLogicaNegocio.Mensaje);
+                    lblMensaje.Text = objLogicaNegocio.Mensaje;
+                }
+                else
+                {
+                    MessageBox.Show(objLogicaNegocio.Mensaje);
+                }
+                HabilitarBtnNuevo();
             }
             else
             {
                 MessageBox.Show(objLogicaNegocio.Mensaje);
             }
-            HabilitarBtnNuevo();
+            
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -193,7 +203,19 @@ namespace AcademiaLider.CapaPresentacion
 
         private void btnBuscarEvento_Click(object sender, EventArgs e)
         {
+            if (viewEvento == null)
+            {
+                viewEvento = new frmListaEventos();
+            }
+            viewEvento.ShowDialog();
+            MostrarEvento();
+        }
 
+        public void MostrarEvento()
+        {
+            objInscripcion.CodEvento = viewEvento.Codigo;
+            objInscripcion.NombreEvento = viewEvento.Nombre;
+            txtEvento.Text = viewEvento.Nombre;
         }
 
         private void txtCriterioBusqueda_TextChanged(object sender, EventArgs e)
